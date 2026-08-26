@@ -445,6 +445,7 @@ function Index() {
 
             <h1
               className="
+                hero-title
                 font-display
                 font-black
                 uppercase

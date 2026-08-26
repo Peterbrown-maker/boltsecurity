@@ -130,6 +130,8 @@
   /* Responsive typography overrides for small/medium screens only */
   @media (max-width: 1024px) {
     h1 { font-size: clamp(2rem, 6.5vw, 3.8rem); line-height: 1.04; }
+    /* Hero-specific clamp: keep hero headline comfortably readable on phones */
+    .hero-title { font-size: clamp(2.4rem, 9.5vw, 4.4rem); line-height: 1; }
     h2 { font-size: clamp(1.5rem, 4.5vw, 2.8rem); line-height: 1.08; }
     p, li, a, span { font-size: clamp(0.95rem, 2.2vw, 1.0625rem); }
   }
