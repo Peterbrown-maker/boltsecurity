@@ -253,39 +253,3 @@
 }
 
 /* Keep background utilities untouched (do not match bg-[#...]) */
-
-/* Mobile fit rules: ensure content scales and wraps on small screens */
-@media (max-width: 640px) {
-  html, body { overflow-x: hidden; -webkit-text-size-adjust: 100%; }
-  body { font-size: 15px; }
-
-  /* Scale down large headings and force wrapping */
-  h1 {
-    font-size: clamp(1.6rem, 6vw, 3.2rem) !important;
-    line-height: 1.02 !important;
-    word-break: break-word;
-    white-space: normal !important;
-  }
-
-  h2, h3 {
-    font-size: clamp(1rem, 4.5vw, 1.6rem) !important;
-    line-height: 1.1 !important;
-    word-break: break-word;
-  }
-
-  /* Tighten CTA buttons so they fit on one line */
-  .btn-glass { padding-left: 0.9rem !important; padding-right: 0.9rem !important; font-size: 0.9rem !important; }
-
-  /* Keep full-screen sections visually contained on mobile */
-  .min-h-screen { min-height: 100vh !important; }
-
-  /* Make images responsive and prevent overflow */
-  img, .responsive-img { max-width: 100% !important; height: auto !important; object-fit: cover !important; }
-
-  /* Ensure overlay captions wrap and are readable */
-  .overlay-text { font-size: clamp(0.85rem, 3.8vw, 1rem) !important; white-space: normal !important; }
-
-  /* Utility to force no horizontal overflow where needed */
-  .overflow-x-hidden, .no-overflow-x { overflow-x: hidden !important; }
-}
-
