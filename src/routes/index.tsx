@@ -449,11 +449,11 @@ function Index() {
                 font-black
                 uppercase
                 tracking-[-0.055em]
-                text-[3.7rem]
-                sm:text-6xl
-                lg:text-[6.8rem]
-                leading-[0.84]
-                  text-[var(--foreground)]
+                text-[2.6rem]
+                sm:text-5xl
+                lg:text-[4.8rem]
+                leading-[0.92]
+                text-[var(--foreground)]
               "
             >
               Security
