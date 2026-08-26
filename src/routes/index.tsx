@@ -443,6 +443,8 @@ function Index() {
               <span className="h-px w-9 bg-[var(--accent)] shadow-[0_0_8px_rgba(212,175,55,0.16)]" />
             </div>
 
+            {/* Inline emergency style to force larger hero headline on small phones */}
+            <style>{`@media (max-width:480px){.hero-title{font-size:clamp(3.6rem,10vw,4.4rem)!important;line-height:1}}`}</style>
             <h1
               className="
                 hero-title
