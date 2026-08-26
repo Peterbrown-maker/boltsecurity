@@ -107,6 +107,8 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
+        {/* Pre-hydration theme script: apply stored theme or system preference before React mounts to avoid flash/mismatch */}
+        <script dangerouslySetInnerHTML={{ __html: `try{(function(){var t=localStorage.getItem('theme');if(t==='dark'){document.documentElement.classList.add('dark');return;}if(t==='light'){document.documentElement.classList.remove('dark');return;}var m=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)');if(m&&m.matches){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}})()}catch(e){}` }} />
         <HeadContent />
       </head>
       <body>

@@ -33,45 +33,67 @@
 
 :root {
   --radius: 1rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.12 0.01 250);
-  --card: oklch(0.99 0 0);
-  --card-foreground: oklch(0.12 0.01 250);
-  --primary: oklch(0.12 0.01 250);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.96 0.005 250);
-  --secondary-foreground: oklch(0.12 0.01 250);
-  --muted: oklch(0.96 0.005 250);
-  --muted-foreground: oklch(0.45 0.02 250);
-  --accent: oklch(0.62 0.22 255);
-  --accent-foreground: oklch(1 0 0);
-  --border: oklch(0.92 0.005 250);
-  --ring: oklch(0.62 0.22 255);
-  --glass: oklch(1 0 0 / 0.65);
-  --glass-border: oklch(0.12 0.01 250 / 0.08);
-  --shadow-soft: 0 10px 40px -10px oklch(0.12 0.01 250 / 0.12);
-  --shadow-glow: 0 0 60px oklch(0.62 0.22 255 / 0.35);
+  /* Slightly darker white / warm grey background for better glass contrast */
+  --background: #f3f5f7;
+  --foreground: #2B2B2B; /* sampled dark grey from logo */
+  --card: #ffffff;
+  --card-foreground: #2B2B2B;
+  --primary: #1E6FFF; /* sampled blue from logo */
+  --primary-dark: #0f3f9a; /* darker shiny blue for gradients */
+  --primary-foreground: #ffffff;
+  --secondary: #dbe9ff;
+  --secondary-foreground: #2B2B2B;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b6b6b;
+  --accent: #D4AF37; /* gold accent */
+  --accent-foreground: #111111;
+  --border: rgba(43,43,43,0.06);
+  --ring: rgba(30,111,255,0.35);
+  /* Water-glass effect: subtle bluish tint and softer transparency */
+  --glass: rgba(236,244,255,0.72);
+  --glass-border: rgba(30,111,255,0.08);
+  --shadow-soft: 0 10px 40px -10px rgba(43,43,43,0.06);
+  --shadow-glow: 0 0 60px rgba(30,111,255,0.08);
+  --overlay-foreground: #ffffff;
+  --overlay-foreground-rgb: 255,255,255;
 }
 
 .dark {
-  --background: oklch(0.13 0.005 260);
-  --foreground: oklch(0.98 0 0);
-  --card: oklch(0.17 0.008 260);
-  --card-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.98 0 0);
-  --primary-foreground: oklch(0.13 0.005 260);
-  --secondary: oklch(0.22 0.01 260);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.22 0.01 260);
-  --muted-foreground: oklch(0.68 0.02 260);
-  --accent: oklch(0.7 0.22 255);
-  --accent-foreground: oklch(0.13 0.005 260);
-  --border: oklch(1 0 0 / 0.08);
-  --ring: oklch(0.7 0.22 255);
-  --glass: oklch(0.2 0.01 260 / 0.5);
-  --glass-border: oklch(1 0 0 / 0.1);
-  --shadow-soft: 0 10px 40px -10px oklch(0 0 0 / 0.5);
-  --shadow-glow: 0 0 80px oklch(0.7 0.22 255 / 0.4);
+  --overlay-foreground: #e6e6e6;
+  --overlay-foreground-rgb: 230,230,230;
+}
+
+/* Utilities for text over image overlays */
+.overlay-text { color: var(--overlay-foreground) !important; }
+.overlay-text-90 { color: rgba(var(--overlay-foreground-rgb), 0.9) !important; }
+.overlay-text-75 { color: rgba(var(--overlay-foreground-rgb), 0.75) !important; }
+.overlay-text-75 { color: rgba(var(--overlay-foreground-rgb), 0.75) !important; }
+.overlay-text-70 { color: rgba(var(--overlay-foreground-rgb), 0.7) !important; }
+.overlay-text-65 { color: rgba(var(--overlay-foreground-rgb), 0.65) !important; }
+.overlay-text-60 { color: rgba(var(--overlay-foreground-rgb), 0.6) !important; }
+.overlay-text-55 { color: rgba(var(--overlay-foreground-rgb), 0.55) !important; }
+.overlay-text-40 { color: rgba(var(--overlay-foreground-rgb), 0.4) !important; }
+
+.dark {
+  --background: #0b0c0e;
+  --foreground: #e6e6e6;
+  --card: #121214;
+  --card-foreground: #e6e6e6;
+  --primary: #1E6FFF; /* keep blue accent in dark */
+  --primary-foreground: #ffffff;
+  --secondary: #264a9a;
+  --secondary-foreground: #e6e6e6;
+  --muted: #1b1c1e;
+  --muted-foreground: #9aa0a6;
+  --accent: #D4AF37; /* gold */
+  --accent-foreground: #111111;
+  --border: rgba(255,255,255,0.06);
+  --ring: rgba(30,111,255,0.35);
+  --glass: rgba(18,18,20,0.5);
+  --glass-border: rgba(255,255,255,0.08);
+  --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.6);
+  --shadow-glow: 0 0 80px rgba(30,111,255,0.18);
+  --logo-dark-grey: #2B2B2B;
 }
 
 @layer base {
@@ -94,8 +116,61 @@
   box-shadow: var(--shadow-soft);
 }
 
+/* Button-specific water glass utility: stronger bluish border and subtle glow */
+:root {
+  --glass-button-border: rgba(30,111,255,0.14);
+  --glass-button-bg-hover: rgba(236,244,255,0.82);
+}
+
+.dark {
+  --glass-button-border: rgba(30,111,255,0.12);
+}
+
+@utility btn-glass {
+  /* Use theme vars so dark mode can switch to a darker water-blue button */
+  background: linear-gradient(180deg, var(--glass-button-gradient-start), var(--glass-button-gradient-end));
+  backdrop-filter: blur(22px) saturate(150%);
+  border: 1px solid var(--glass-button-border);
+  box-shadow: 0 6px 30px rgba(30,111,255,0.12);
+  transition: transform 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+/* button color variables for light/dark */
+:root {
+  --glass-button-gradient-start: rgba(30,111,255,0.14);
+  --glass-button-gradient-end: var(--color-glass);
+  --glass-button-text: var(--primary);
+}
+
+.dark {
+  --glass-button-gradient-start: rgba(15,63,154,0.28); /* darker water-blue */
+  --glass-button-gradient-end: rgba(18,18,20,0.58); /* darker base for depth */
+  --glass-button-text: #e7eefc;
+  --glass-button-border: rgba(15,63,154,0.30);
+}
+
+@utility btn-glass-hover {
+  background: var(--glass-button-bg-hover);
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 10px 40px rgba(30,111,255,0.08);
+}
+
 @utility text-gradient {
   background: linear-gradient(135deg, var(--foreground) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-gold-blue {
+  background: linear-gradient(90deg, var(--accent) 0%, var(--primary-dark) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-blue-gold {
+  background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -122,3 +197,60 @@
 @utility animate-float-delayed { animation: float-slower 9s ease-in-out infinite; }
 @utility animate-fade-up { animation: fade-up 0.8s ease-out both; }
 @utility animate-pulse-glow { animation: pulse-glow 2.5s ease-out infinite; }
+
+/* Override common inline hex color utilities (text/border/icon) to use theme variables
+   This lets existing Tailwind arbitrary color classes keep their structure while adopting
+   the site's theme colors without changing background colors. */
+
+/* Map various muted text hex classes to the theme muted-foreground */
+[class*="text-[#d0d4d8]"],
+[class*="text-[#d4d7da]"],
+[class*="text-[#b4b9be]"],
+[class*="text-[#aeb3b8]"],
+[class*="text-[#a3a8ad]"],
+[class*="text-[#e0e2e4]"],
+[class*="text-[#777e85]"],
+[class*="text-[#747b82]"],
+[class*="text-[#8f969d]"],
+[class*="text-[#969ca1]"],
+[class*="text-[#666d73]"],
+[class*="text-[#c3c7ca]"],
+[class*="text-[#555c62]"],
+[class*="text-[#d7dadd]"],
+[class*="text-[#a5abb0]"],
+[class*="text-[#aeb3b8]"] {
+  color: var(--muted-foreground) !important;
+}
+
+/* Override white text to site's foreground */
+[class*="text-white"] {
+  color: var(--foreground) !important;
+}
+
+/* Small icons and inline SVG fills that used pale colors */
+[class*="text-[#d0d4d8]"] svg,
+[class*="text-[#c3c7ca]"] svg,
+[class*="text-[#a3a8ad]"] svg {
+  color: var(--muted-foreground) !important;
+  fill: currentColor !important;
+}
+
+/* Replace border-white usages with the themed border color */
+[class*="border-white"],
+[class*="border-white/"] {
+  border-color: var(--color-border) !important;
+}
+
+/* Bring small darker text values to the main foreground */
+[class*="text-[#101214]"],
+[class*="text-[#111315]"] {
+  color: var(--foreground) !important;
+}
+
+/* Links or labels that used light greys */
+[class*="text-[#aeb3b8]"] {
+  color: var(--muted-foreground) !important;
+}
+
+/* Keep background utilities untouched (do not match bg-[#...]) */
+

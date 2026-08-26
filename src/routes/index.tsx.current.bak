@@ -1,0 +1,494 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useRef } from "react";
+import {
+  ArrowRight,
+  Shield,
+  Camera,
+  Radio,
+  Siren,
+  Dog,
+  UserRound,
+  LockKeyhole,
+  Eye,
+  CheckCircle2,
+  Instagram,
+  MessageCircle,
+  Phone,
+  Mail,
+  MapPin,
+} from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
+
+import boltLogo from "@/assets/bsecurity-logo.png";
+
+// Replace these with your actual security images
+import securityHero from "@/assets/security-hero.jpg";
+import securityGuard from "@/assets/security-guard.jpg";
+import cctv from "@/assets/cctv.jpg";
+import patrol from "@/assets/patrol.jpg";
+import controlRoom from "@/assets/control-room.jpg";
+import tactical from "@/assets/tactical.jpg";
+
+export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      {
+        title: "Bolt Security | Professional Security Services",
+      },
+      {
+        name: "description",
+        content:
+          "Professional security services, armed response, CCTV monitoring, patrols, tactical security and protection solutions.",
+      },
+      {
+        property: "og:title",
+        content: "Bolt Security | Protection Without Compromise",
+      },
+      {
+        property: "og:description",
+        content:
+          "Professional security, technology and response solutions across South Africa.",
+      },
+      {
+        property: "og:image",
+        content: boltLogo,
+      },
+    ],
+    links: [
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "stylesheet",
+        href:
+          "https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap",
+      },
+    ],
+  }),
+
+  component: Index,
+});
+
+const services = [
+  {
+    icon: Shield,
+    title: "Guarding",
+    short: "Professional protection for people, properties and businesses.",
+    image: securityGuard,
+  },
+  {
+    icon: Siren,
+    title: "Armed Response",
+    short: "Rapid response when every second matters.",
+    image: patrol,
+  },
+  {
+    icon: Camera,
+    title: "CCTV & Monitoring",
+    short: "24/7 visibility through modern security technology.",
+    image: cctv,
+  },
+  {
+    icon: Radio,
+    title: "Tactical Security",
+    short: "Specialised protection for high-risk environments.",
+    image: tactical,
+  },
+  {
+    icon: Dog,
+    title: "K9 Security",
+    short: "Specialised canine units for detection and protection.",
+    image: securityGuard,
+  },
+  {
+    icon: UserRound,
+    title: "VIP Protection",
+    short: "Professional personal protection and secure movement.",
+    image: tactical,
+  },
+];
+
+const technology = [
+  {
+    icon: Camera,
+    title: "CCTV",
+    text: "Keep eyes on what matters.",
+  },
+  {
+    icon: Eye,
+    title: "Monitoring",
+    text: "Continuous security awareness.",
+  },
+  {
+    icon: LockKeyhole,
+    title: "Access Control",
+    text: "Control who enters your space.",
+  },
+];
+
+function useReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const els =
+      ref.current?.querySelectorAll<HTMLElement>("[data-reveal]");
+
+    if (!els) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const element = entry.target as HTMLElement;
+
+            element.style.animation =
+              "bolt-fade-up 0.8s cubic-bezier(.22,1,.36,1) both";
+
+            io.unobserve(element);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+      }
+    );
+
+    els.forEach((el) => {
+      el.style.opacity = "0";
+      io.observe(el);
+    });
+
+    return () => io.disconnect();
+  }, []);
+
+  return ref;
+}
+
+function Index() {
+  const ref = useReveal();
+
+  return (
+    <div
+      ref={ref}
+      className="
+        min-h-screen
+        overflow-x-hidden
+        bg-[#0b0c0e]
+        text-[#f5f5f5]
+        selection:bg-[#d0d4d8]
+        selection:text-[#0b0c0e]
+      "
+    >
+      {/* =========================================================
+          GLOBAL STYLES
+      ========================================================= */}
+
+      <style>{`
+        @keyframes bolt-fade-up {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes bolt-float {
+          0%, 100% {
+            transform: translateY(0);
+          }
+
+          50% {
+            transform: translateY(-8px);
+          }
+        }
+
+        @keyframes bolt-pulse {
+          0%, 100% {
+            box-shadow: 0 0 0 0 rgba(210, 214, 218, 0);
+          }
+
+          50% {
+            box-shadow: 0 0 0 8px rgba(210, 214, 218, 0.04);
+          }
+        }
+
+        .bolt-grid {
+          background-image:
+            linear-gradient(
+              rgba(255,255,255,0.025) 1px,
+              transparent 1px
+            ),
+            linear-gradient(
+              90deg,
+              rgba(255,255,255,0.025) 1px,
+              transparent 1px
+            );
+          background-size: 55px 55px;
+        }
+
+        .bolt-noise {
+          background-image:
+            radial-gradient(
+              rgba(255,255,255,0.07) 0.5px,
+              transparent 0.5px
+            );
+          background-size: 6px 6px;
+        }
+      `}</style>
+
+      {/* =========================================================
+          NAVIGATION
+      ========================================================= */}
+
+      <header className="fixed top-0 inset-x-0 z-50 px-4 sm:px-6 py-4">
+        <div
+          className="
+            mx-auto
+            max-w-7xl
+            flex
+            items-center
+            justify-between
+            gap-4
+            rounded-full
+            border
+            border-white/[0.08]
+            bg-[#111315]/90
+            backdrop-blur-xl
+            px-4
+            sm:px-6
+            py-3
+            shadow-[0_15px_60px_rgba(0,0,0,0.25)]
+          "
+        >
+          {/* LOGO */}
+
+          <a
+            href="#top"
+            aria-label="Bolt Security Home"
+            className="flex items-center min-w-0"
+          >
+            <img
+              src={boltLogo}
+              alt="Bolt Security"
+              className="
+                w-[145px]
+                sm:w-[165px]
+                h-auto
+                object-contain
+              "
+            />
+          </a>
+
+          {/* DESKTOP NAV */}
+
+          <nav className="hidden md:flex items-center gap-8 text-sm">
+            <a
+              href="#services"
+              className="text-[#b8bdc2] hover:text-white transition-colors"
+            >
+              Services
+            </a>
+
+            <a
+              href="#technology"
+              className="text-[#b8bdc2] hover:text-white transition-colors"
+            >
+              Technology
+            </a>
+
+            <a
+              href="#about"
+              className="text-[#b8bdc2] hover:text-white transition-colors"
+            >
+              About
+            </a>
+
+            <a
+              href="#contact"
+              className="text-[#b8bdc2] hover:text-white transition-colors"
+            >
+              Contact
+            </a>
+          </nav>
+
+          {/* RIGHT */}
+
+          <div className="flex items-center gap-2 sm:gap-3">
+            <ThemeToggle />
+
+            <a
+              href="#contact"
+              className="
+                hidden
+                sm:inline-flex
+                items-center
+                gap-2
+                rounded-full
+                bg-[#f3f4f5]
+                text-[#111315]
+                px-5
+                py-2.5
+                text-xs
+                font-bold
+                uppercase
+                tracking-[0.08em]
+                transition-all
+                hover:bg-white
+                hover:scale-[1.02]
+              "
+            >
+              Request Security
+              <ArrowRight className="h-3.5 w-3.5" />
+            </a>
+          </div>
+        </div>
+      </header>
+
+      {/* =========================================================
+          HERO
+      ========================================================= */}
+
+      <section
+        id="top"
+        className="
+          relative
+          min-h-screen
+          flex
+          items-center
+          pt-36
+          pb-20
+          px-6
+          overflow-hidden
+        "
+      >
+        {/* background */}
+
+        <div className="absolute inset-0 -z-20 bg-[#0b0c0e]" />
+
+        <div className="absolute inset-0 -z-10 bolt-grid opacity-40" />
+
+        <div
+          className="
+            absolute
+            top-0
+            right-0
+            -z-10
+            w-[650px]
+            h-[650px]
+            rounded-full
+            bg-white/[0.025]
+            blur-3xl
+          "
+        />
+
+        <div className="mx-auto max-w-7xl w-full grid lg:grid-cols-[0.9fr_1.1fr] gap-14 lg:gap-20 items-center">
+          {/* LEFT */}
+
+          <div className="animate-[bolt-fade-up_0.8s_ease-out_both]">
+            <div
+              className="
+                inline-flex
+                items-center
+                gap-3
+                text-[10px]
+                sm:text-xs
+                uppercase
+                tracking-[0.28em]
+                text-[#92989e]
+                mb-7
+              "
+            >
+              <span className="h-px w-9 bg-[#aeb3b8]" />
+
+              Professional Security Services
+
+              <span className="h-px w-9 bg-[#aeb3b8]" />
+            </div>
+
+            <h1
+              className="
+                font-display
+                font-black
+                uppercase
+                tracking-[-0.055em]
+                text-[3.7rem]
+                sm:text-6xl
+                lg:text-[6.8rem]
+                leading-[0.84]
+                text-white
+              "
+            >
+              Security
+              <br />
+
+              <span className="text-[#b9bec3]">
+                Without
+              </span>
+
+              <br />
+
+              <span className="text-white">
+                Compromise.
+              </span>
+            </h1>
+
+            <div className="mt-8 max-w-lg">
+              <p
+                className="
+                  text-base
+                  sm:text-lg
+                  font-medium
+                  text-[#d4d7da]
+                  leading-relaxed
+                "
+              >
+                Professional protection powered by people,
+                technology and rapid response.
+              </p>
+
+              <p className="mt-3 text-sm text-[#777e85] max-w-md">
+                Security solutions for people, properties,
+                businesses and high-risk environments.
+              </p>
+            </div>
+
+            {/* CTA */}
+
+            <div className="flex flex-wrap gap-3 mt-9">
+              <a
+                href="#contact"
+                className="
+                  group
+                  inline-flex
+                  items-center
+                  gap-2
+                  rounded-full
+                  bg-[#f1f2f3]
+                  text-[#101214]
+                  px-7
+                  py-3.5
+                  text-sm
+                  font-bold
+                  uppercase
+                  tracking-[0.06em]
+                  transition-all
+                  hover:bg-white
+                  hover:scale-[1.03]
+                "
+              >
+                Request Security
+
+                <ArrowRight
+                  className="
+                    h-4
+Continue...

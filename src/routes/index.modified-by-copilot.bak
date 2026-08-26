@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import {
   ArrowRight,
   Shield,
@@ -16,8 +16,6 @@ import {
   Phone,
   Mail,
   MapPin,
-  Menu,
-  X,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
@@ -26,7 +24,6 @@ import boltLogo from "@/assets/bsecurity-logo.png";
 // Replace these with your actual security images
 import securityHero from "@/assets/security-hero.jpg";
 import securityGuard from "@/assets/security-guard.jpg";
-import boltSecurityGuard from "@/assets/boltsecuritygaurd.jpg";
 import cctv from "@/assets/cctv.jpg";
 import patrol from "@/assets/patrol.jpg";
 import controlRoom from "@/assets/control-room.jpg";
@@ -41,7 +38,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Bolt Security — Protection in motion. Professional security, technology, and rapid response across South Africa.",
+          "Professional security services, armed response, CCTV monitoring, patrols, tactical security and protection solutions.",
       },
       {
         property: "og:title",
@@ -50,7 +47,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Bolt Security — Protection in motion. Professional security, technology, and rapid response across South Africa.",
+          "Professional security, technology and response solutions across South Africa.",
       },
       {
         property: "og:image",
@@ -71,11 +68,6 @@ export const Route = createFileRoute("/")({
         rel: "stylesheet",
         href:
           "https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap",
-      },
-      {
-        rel: "icon",
-        href: boltLogo,
-        type: "image/png",
       },
     ],
   }),
@@ -112,7 +104,7 @@ const services = [
     icon: Dog,
     title: "K9 Security",
     short: "Specialised canine units for detection and protection.",
-    image: boltSecurityGuard,
+    image: securityGuard,
   },
   {
     icon: UserRound,
@@ -180,13 +172,18 @@ function useReveal() {
 
 function Index() {
   const ref = useReveal();
-  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <div
       ref={ref}
-      style={{ backgroundColor: 'var(--color-background)', color: 'var(--color-foreground)' }}
-      className="min-h-screen overflow-x-hidden selection:bg-[var(--accent)] selection:text-[var(--color-background)]"
+      className="
+        min-h-screen
+        overflow-x-hidden
+        bg-[#0b0c0e]
+        text-[#f5f5f5]
+        selection:bg-[#d0d4d8]
+        selection:text-[#0b0c0e]
+      "
     >
       {/* =========================================================
           GLOBAL STYLES
@@ -217,23 +214,23 @@ function Index() {
 
         @keyframes bolt-pulse {
           0%, 100% {
-            box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+            box-shadow: 0 0 0 0 rgba(210, 214, 218, 0);
           }
 
           50% {
-            box-shadow: 0 0 0 8px rgba(212, 175, 55, 0.12);
+            box-shadow: 0 0 0 8px rgba(210, 214, 218, 0.04);
           }
         }
 
         .bolt-grid {
           background-image:
             linear-gradient(
-              var(--color-glass-border) 1px,
+              rgba(255,255,255,0.025) 1px,
               transparent 1px
             ),
             linear-gradient(
               90deg,
-              var(--color-glass-border) 1px,
+              rgba(255,255,255,0.025) 1px,
               transparent 1px
             );
           background-size: 55px 55px;
@@ -242,7 +239,7 @@ function Index() {
         .bolt-noise {
           background-image:
             radial-gradient(
-              rgba(212, 175, 55, 0.09) 0.5px,
+              rgba(255,255,255,0.07) 0.5px,
               transparent 0.5px
             );
           background-size: 6px 6px;
@@ -264,13 +261,13 @@ function Index() {
             gap-4
             rounded-full
             border
-              border-[var(--color-glass-border)]
-              bg-[var(--color-glass)]
+            border-white/[0.08]
+            bg-[#111315]/90
             backdrop-blur-xl
             px-4
             sm:px-6
             py-3
-              shadow-[var(--shadow-soft)]
+            shadow-[0_15px_60px_rgba(0,0,0,0.25)]
           "
         >
           {/* LOGO */}
@@ -283,7 +280,6 @@ function Index() {
             <img
               src={boltLogo}
               alt="Bolt Security"
-              suppressHydrationWarning
               className="
                 w-[145px]
                 sm:w-[165px]
@@ -298,28 +294,28 @@ function Index() {
           <nav className="hidden md:flex items-center gap-8 text-sm">
             <a
               href="#services"
-                className="text-[var(--primary)] hover:text-[var(--primary-dark)] transition-colors"
+              className="text-[#b8bdc2] hover:text-white transition-colors"
             >
               Services
             </a>
 
             <a
               href="#technology"
-                className="text-[var(--primary)] hover:text-[var(--primary-dark)] transition-colors"
+              className="text-[#b8bdc2] hover:text-white transition-colors"
             >
               Technology
             </a>
 
             <a
               href="#about"
-                className="text-[var(--primary)] hover:text-[var(--primary-dark)] transition-colors"
+              className="text-[#b8bdc2] hover:text-white transition-colors"
             >
               About
             </a>
 
             <a
               href="#contact"
-                className="text-[var(--primary)] hover:text-[var(--primary-dark)] transition-colors"
+              className="text-[#b8bdc2] hover:text-white transition-colors"
             >
               Contact
             </a>
@@ -328,15 +324,6 @@ function Index() {
           {/* RIGHT */}
 
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Mobile menu button */}
-            <button
-              onClick={() => setMobileOpen((s) => !s)}
-              aria-label="Open menu"
-              className="md:hidden btn-glass p-2 rounded-full"
-            >
-              {!mobileOpen ? <Menu className="h-5 w-5 text-[var(--primary)]" /> : <X className="h-5 w-5 text-[var(--primary)]" />}
-            </button>
-
             <ThemeToggle />
 
             <a
@@ -347,7 +334,8 @@ function Index() {
                 items-center
                 gap-2
                 rounded-full
-                btn-glass
+                bg-[#f3f4f5]
+                text-[#111315]
                 px-5
                 py-2.5
                 text-xs
@@ -355,28 +343,15 @@ function Index() {
                 uppercase
                 tracking-[0.08em]
                 transition-all
-                hover:brightness-95
+                hover:bg-white
                 hover:scale-[1.02]
-                text-[var(--glass-button-text)]
               "
             >
               Request Security
-              <ArrowRight className="h-3.5 w-3.5 text-[var(--glass-button-text)]" />
+              <ArrowRight className="h-3.5 w-3.5" />
             </a>
           </div>
         </div>
-
-        {/* Mobile menu panel */}
-        {mobileOpen && (
-          <div className="md:hidden absolute top-[72px] right-4 z-40 w-[220px] rounded-lg btn-glass p-4">
-            <nav className="flex flex-col gap-3">
-              <a onClick={() => setMobileOpen(false)} href="#services" className="text-[var(--primary)] px-2 py-1 rounded">Services</a>
-              <a onClick={() => setMobileOpen(false)} href="#technology" className="text-[var(--primary)] px-2 py-1 rounded">Technology</a>
-              <a onClick={() => setMobileOpen(false)} href="#about" className="text-[var(--primary)] px-2 py-1 rounded">About</a>
-              <a onClick={() => setMobileOpen(false)} href="#contact" className="text-[var(--primary)] px-2 py-1 rounded">Contact</a>
-            </nav>
-          </div>
-        )}
       </header>
 
       {/* =========================================================
@@ -398,7 +373,7 @@ function Index() {
       >
         {/* background */}
 
-        <div className="absolute inset-0 -z-20 bg-[var(--color-background)]" />
+        <div className="absolute inset-0 -z-20 bg-[#0b0c0e]" />
 
         <div className="absolute inset-0 -z-10 bolt-grid opacity-40" />
 
@@ -411,7 +386,7 @@ function Index() {
             w-[650px]
             h-[650px]
             rounded-full
-            bg-[var(--accent)]/[0.05]
+            bg-white/[0.025]
             blur-3xl
           "
         />
@@ -429,15 +404,15 @@ function Index() {
                 sm:text-xs
                 uppercase
                 tracking-[0.28em]
-                text-[rgba(43,43,43,0.55)]
+                text-[#92989e]
                 mb-7
               "
             >
-              <span className="h-px w-9 bg-[var(--accent)] shadow-[0_0_8px_rgba(212,175,55,0.16)]" />
+              <span className="h-px w-9 bg-[#aeb3b8]" />
 
-              <span className="text-[var(--accent)]">Professional Security Services</span>
+              Professional Security Services
 
-              <span className="h-px w-9 bg-[var(--accent)] shadow-[0_0_8px_rgba(212,175,55,0.16)]" />
+              <span className="h-px w-9 bg-[#aeb3b8]" />
             </div>
 
             <h1
@@ -450,19 +425,19 @@ function Index() {
                 sm:text-6xl
                 lg:text-[6.8rem]
                 leading-[0.84]
-                  text-[var(--foreground)]
+                text-white
               "
             >
               Security
               <br />
 
-                <span className="text-blue-gold">
+              <span className="text-[#b9bec3]">
                 Without
               </span>
 
               <br />
 
-                <span className="text-blue-gold">
+              <span className="text-white">
                 Compromise.
               </span>
             </h1>
@@ -473,7 +448,7 @@ function Index() {
                   text-base
                   sm:text-lg
                   font-medium
-                  text-[var(--muted-foreground)]
+                  text-[#d4d7da]
                   leading-relaxed
                 "
               >
@@ -481,7 +456,7 @@ function Index() {
                 technology and rapid response.
               </p>
 
-              <p className="mt-3 text-sm text-[var(--muted-foreground)] max-w-md">
+              <p className="mt-3 text-sm text-[#777e85] max-w-md">
                 Security solutions for people, properties,
                 businesses and high-risk environments.
               </p>
@@ -498,7 +473,8 @@ function Index() {
                   items-center
                   gap-2
                   rounded-full
-                  btn-glass
+                  bg-[#f1f2f3]
+                  text-[#101214]
                   px-7
                   py-3.5
                   text-sm
@@ -506,9 +482,8 @@ function Index() {
                   uppercase
                   tracking-[0.06em]
                   transition-all
-                  hover:brightness-95
+                  hover:bg-white
                   hover:scale-[1.03]
-                  text-[var(--primary)]
                 "
               >
                 Request Security
@@ -519,7 +494,6 @@ function Index() {
                     w-4
                     transition-transform
                     group-hover:translate-x-1
-                    text-[var(--primary)]
                   "
                 />
               </a>
@@ -531,14 +505,17 @@ function Index() {
                   items-center
                   gap-2
                   rounded-full
-                  btn-glass
+                  border
+                  border-white/[0.14]
+                  bg-white/[0.025]
                   px-7
                   py-3.5
                   text-sm
                   font-medium
-                    text-[var(--glass-button-text)]
+                  text-[#d0d4d8]
                   transition-all
-                  hover:brightness-95
+                  hover:border-white/30
+                  hover:bg-white/[0.06]
                 "
               >
                 Explore Services
@@ -558,21 +535,21 @@ function Index() {
                 text-[10px]
                 uppercase
                 tracking-[0.18em]
-                text-[var(--muted-foreground)]
+                text-[#747b82]
               "
             >
               <span className="flex items-center gap-2">
-                <CheckCircle2 className="h-3.5 w-3.5 text-[var(--accent)]" />
+                <CheckCircle2 className="h-3.5 w-3.5" />
                 Professional
               </span>
 
               <span className="flex items-center gap-2">
-                <CheckCircle2 className="h-3.5 w-3.5 text-[var(--accent)]" />
+                <CheckCircle2 className="h-3.5 w-3.5" />
                 Technology Driven
               </span>
 
               <span className="flex items-center gap-2">
-                <CheckCircle2 className="h-3.5 w-3.5 text-[var(--accent)]" />
+                <CheckCircle2 className="h-3.5 w-3.5" />
                 24/7 Protection
               </span>
             </div>
@@ -593,17 +570,16 @@ function Index() {
                 overflow-hidden
                 rounded-[2rem]
                 border
-                border-[var(--color-glass-border)]
-                bg-[var(--color-glass)]
-                shadow-[var(--shadow-soft)]
+                border-white/[0.09]
+                bg-[#17191c]
+                shadow-[0_40px_100px_rgba(0,0,0,0.55)]
                 animate-[bolt-float_6s_ease-in-out_infinite]
               "
             >
               <img
                 src={securityHero}
                 alt="Professional Bolt Security officer"
-                suppressHydrationWarning
-                              className="w-full h-full object-cover z-0"
+                className="w-full h-full object-cover"
               />
 
               <div
@@ -614,25 +590,46 @@ function Index() {
                   from-black/65
                   via-black/10
                   to-transparent
-                                z-10
-                              "
-                            />
+                "
+              />
 
-                            <div className="absolute inset-0 z-20 flex items-center justify-center">
-                              <div className="flex flex-col items-center gap-3 text-center">
-                                <div className="h-14 w-14 rounded-full bg-[var(--color-glass)] border border-[var(--color-glass-border)] grid place-items-center shadow-[var(--shadow-soft)]">
-                                  <Shield className="h-6 w-6 text-[var(--accent)]" />
-                                </div>
+              <div
+                className="
+                  absolute
+                  left-6
+                  bottom-6
+                  right-6
+                  flex
+                  items-end
+                  justify-between
+                "
+              >
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.22em] text-white/55">
+                    BOLT SECURITY
+                  </p>
 
-                                <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent)]">
-                                  BOLT SECURITY
-                                </p>
+                  <p className="mt-1 text-lg font-bold">
+                    Protection in motion.
+                  </p>
+                </div>
 
-                                <p className="mt-1 text-lg font-bold overlay-text">
-                                  Protection in motion.
-                                </p>
-                              </div>
-                            </div>
+                <div
+                  className="
+                    h-10
+                    w-10
+                    rounded-full
+                    border
+                    border-white/15
+                    bg-black/30
+                    backdrop-blur-md
+                    grid
+                    place-items-center
+                  "
+                >
+                  <Shield className="h-4 w-4" />
+                </div>
+              </div>
             </div>
 
             {/* SECOND IMAGE */}
@@ -647,37 +644,30 @@ function Index() {
                 overflow-hidden
                 rounded-[1.5rem]
                 border
-                border-[var(--color-glass-border)]
-                bg-[var(--color-glass)]
-                shadow-[var(--shadow-soft)]
+                border-white/[0.09]
+                bg-[#17191c]
+                shadow-[0_30px_70px_rgba(0,0,0,0.5)]
                 animate-[bolt-float_7s_ease-in-out_1s_infinite]
               "
             >
               <img
                 src={cctv}
                 alt="Security CCTV monitoring"
-                suppressHydrationWarning
-                              className="w-full h-full object-cover z-0"
+                className="w-full h-full object-cover"
                 loading="lazy"
               />
 
-                            <div className="absolute inset-0 bg-black/35 z-10" />
+              <div className="absolute inset-0 bg-black/35" />
 
-                            <div className="absolute inset-0 z-20 flex items-center justify-center">
-                              <div className="flex flex-col items-center gap-3 text-center">
-                                <div className="h-12 w-12 rounded-full bg-[var(--color-glass)] border border-[var(--color-glass-border)] grid place-items-center shadow-[var(--shadow-soft)]">
-                                  <Camera className="h-6 w-6 text-[var(--accent)]" />
-                                </div>
+              <div className="absolute left-4 bottom-4">
+                <p className="text-xs font-bold uppercase tracking-[0.16em]">
+                  CCTV
+                </p>
 
-                                <p className="text-xs font-bold uppercase tracking-[0.16em] overlay-text">
-                                  CCTV
-                                </p>
-
-                                <p className="text-[10px] overlay-text-60 mt-1">
-                                  Continuous monitoring
-                                </p>
-                              </div>
-                            </div>
+                <p className="text-[10px] text-white/60 mt-1">
+                  Continuous monitoring
+                </p>
+              </div>
             </div>
 
             {/* THIRD IMAGE */}
@@ -692,31 +682,24 @@ function Index() {
                 overflow-hidden
                 rounded-[1.25rem]
                 border
-                border-[var(--color-glass-border)]
-                bg-[var(--color-glass)]
-                shadow-[var(--shadow-soft)]
+                border-white/[0.09]
+                bg-[#17191c]
+                shadow-[0_25px_60px_rgba(0,0,0,0.5)]
               "
             >
               <img
                 src={patrol}
                 alt="Bolt security patrol"
-                suppressHydrationWarning
-                className="w-full h-full object-cover z-0"
+                className="w-full h-full object-cover"
                 loading="lazy"
               />
 
-              <div className="absolute inset-0 bg-black/40 z-10" />
+              <div className="absolute inset-0 bg-black/40" />
 
-              <div className="absolute inset-0 z-20 flex items-center justify-center">
-                <div className="flex flex-col items-center gap-3 text-center">
-                  <div className="h-12 w-12 rounded-full bg-[var(--color-glass)] border border-[var(--color-glass-border)] grid place-items-center shadow-[var(--shadow-soft)]">
-                    <Siren className="h-6 w-6 text-[var(--accent)]" />
-                  </div>
-
-                  <p className="text-xs font-bold uppercase tracking-[0.16em] overlay-text">
-                    RESPONSE
-                  </p>
-                </div>
+              <div className="absolute left-4 bottom-4">
+                <p className="text-xs font-bold uppercase tracking-[0.16em]">
+                  RESPONSE
+                </p>
               </div>
             </div>
 
@@ -730,26 +713,26 @@ function Index() {
                 sm:left-[-2rem]
                 rounded-2xl
                 border
-                border-[var(--color-glass-border)]
-                bg-[var(--color-glass)]
+                border-white/[0.1]
+                bg-[#131518]/90
                 backdrop-blur-xl
                 px-4
                 py-3
-                shadow-[var(--shadow-soft)]
+                shadow-xl
               "
             >
               <div className="flex items-center gap-3">
                 <span className="relative flex h-2.5 w-2.5">
-                  <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-40 animate-ping" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[var(--accent)]" />
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-[#d7dadd] opacity-40 animate-ping" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#d7dadd]" />
                 </span>
 
                 <div>
-                  <p className="text-[9px] uppercase tracking-[0.18em] text-[var(--muted-foreground)]">
+                  <p className="text-[9px] uppercase tracking-[0.18em] text-[#777e85]">
                     Security
                   </p>
 
-                  <p className="text-xs font-semibold text-[var(--foreground)]">
+                  <p className="text-xs font-semibold text-white">
                     Active Protection
                   </p>
                 </div>
@@ -765,14 +748,14 @@ function Index() {
 
       <section
         id="services"
-        className="relative py-28 sm:py-32 px-6 border-t border-[var(--color-glass-border)]"
+        className="relative py-28 sm:py-32 px-6 border-t border-white/[0.06]"
       >
         <div className="mx-auto max-w-7xl">
           <div
             className="max-w-3xl mb-14"
             data-reveal
           >
-            <span className="text-[10px] uppercase tracking-[0.28em] text-[var(--accent)]">
+            <span className="text-[10px] uppercase tracking-[0.28em] text-[#777e85]">
               What we protect
             </span>
 
@@ -787,12 +770,11 @@ function Index() {
                 sm:text-5xl
                 lg:text-6xl
                 leading-[0.92]
-                text-[var(--foreground)]
               "
             >
               Security
               <br />
-              <span className="text-gold-blue">
+              <span className="text-[#aeb3b8]">
                 That Moves.
               </span>
             </h2>
@@ -816,14 +798,12 @@ function Index() {
                     overflow-hidden
                     rounded-[1.5rem]
                     border
-                    border-[var(--color-glass-border)]
-                    bg-[var(--color-glass)]
-                    backdrop-blur-md
+                    border-white/[0.08]
+                    bg-[#131518]
                     transition-all
                     duration-500
                     hover:-translate-y-2
-                    hover:border-[var(--accent)]/40
-                    shadow-[var(--shadow-soft)]
+                    hover:border-white/[0.18]
                   "
                 >
                   {/* image */}
@@ -831,21 +811,20 @@ function Index() {
                   <img
                     src={service.image}
                     alt={service.title}
-                        suppressHydrationWarning
-                        className="
-                          absolute
-                          inset-0
-                          w-full
-                          h-full
-                          object-cover
-                          opacity-55
-                          transition-all
-                          duration-700
-                          group-hover:scale-105
-                          group-hover:opacity-70
-                        "
-                        loading="lazy"
-                      />
+                    className="
+                      absolute
+                      inset-0
+                      w-full
+                      h-full
+                      object-cover
+                      opacity-55
+                      transition-all
+                      duration-700
+                      group-hover:scale-105
+                      group-hover:opacity-70
+                    "
+                    loading="lazy"
+                  />
 
                   {/* dark overlay */}
 
@@ -854,8 +833,8 @@ function Index() {
                       absolute
                       inset-0
                       bg-gradient-to-t
-                      from-black/90
-                      via-black/55
+                      from-[#090a0c]
+                      via-[#090a0c]/55
                       to-transparent
                     "
                   />
@@ -877,7 +856,7 @@ function Index() {
                         mb-5
                       "
                     >
-                      <Icon className="h-5 w-5 text-[var(--accent)]" />
+                      <Icon className="h-5 w-5 text-[#d0d4d8]" />
                     </div>
 
                     <h3
@@ -887,13 +866,12 @@ function Index() {
                         text-2xl
                         uppercase
                         tracking-tight
-                        overlay-text
                       "
                     >
                       {service.title}
                     </h3>
 
-                    <p className="text-sm overlay-text-70 leading-relaxed mt-2 max-w-sm">
+                    <p className="text-sm text-[#a3a8ad] leading-relaxed mt-2 max-w-sm">
                       {service.short}
                     </p>
 
@@ -908,8 +886,8 @@ function Index() {
                         font-bold
                         uppercase
                         tracking-[0.12em]
-                        text-[var(--accent)]
-                        group-hover:brightness-110
+                        text-[#e0e2e4]
+                        group-hover:text-white
                       "
                     >
                       Learn More
@@ -933,21 +911,20 @@ function Index() {
           <img
             src={tactical}
             alt=""
-            suppressHydrationWarning
             className="w-full h-full object-cover scale-105"
             loading="lazy"
           />
 
-          <div className="absolute inset-0 bg-black/75" />
+          <div className="absolute inset-0 bg-[#08090b]/75" />
 
           <div
             className="
               absolute
               inset-0
               bg-gradient-to-r
-              from-black/80
-              via-black/55
-              to-black/85
+              from-[#08090b]
+              via-[#08090b]/55
+              to-[#08090b]/80
             "
           />
         </div>
@@ -961,7 +938,7 @@ function Index() {
           "
           data-reveal
         >
-          <span className="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-[#a5abb0]">
             The Bolt Standard
           </span>
 
@@ -976,19 +953,18 @@ function Index() {
               sm:text-6xl
               lg:text-8xl
               leading-[0.86]
-          overlay-text
             "
           >
             Protection
             <br />
             Starts Before
             <br />
-            <span className="text-gold-blue">
+            <span className="text-[#aeb3b8]">
               The Threat.
             </span>
           </h2>
 
-          <p className="mt-8 mx-auto max-w-xl overlay-text-70 text-base sm:text-lg">
+          <p className="mt-8 mx-auto max-w-xl text-[#b4b9be] text-base sm:text-lg">
             Proactive security built around people, intelligence,
             technology and response.
           </p>
@@ -1001,7 +977,7 @@ function Index() {
 
       <section
         id="technology"
-        className="py-28 sm:py-32 px-6 border-t border-[var(--color-glass-border)]"
+        className="py-28 sm:py-32 px-6 border-t border-white/[0.06]"
       >
         <div className="mx-auto max-w-7xl">
           <div
@@ -1023,19 +999,17 @@ function Index() {
                 overflow-hidden
                 rounded-[2rem]
                 border
-                border-[var(--color-glass-border)]
-                shadow-[var(--shadow-soft)]
+                border-white/[0.08]
               "
             >
               <img
                 src={controlRoom}
                 alt="Bolt Security control room"
-                suppressHydrationWarning
-                className="w-full h-full object-cover z-0"
+                className="w-full h-full object-cover"
                 loading="lazy"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent z-10" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
 
               <div
                 className="
@@ -1046,15 +1020,14 @@ function Index() {
                   flex
                   items-end
                   justify-between
-                  z-20
                 "
               >
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.25em] text-[var(--accent)]">
+                  <p className="text-[10px] uppercase tracking-[0.25em] text-white/50">
                     Technology
                   </p>
 
-                  <p className="mt-1 text-xl font-bold overlay-text">
+                  <p className="mt-1 text-xl font-bold">
                     Security, connected.
                   </p>
                 </div>
@@ -1072,7 +1045,7 @@ function Index() {
                     place-items-center
                   "
                 >
-                  <Camera className="h-5 w-5 text-[var(--accent)]" />
+                  <Camera className="h-5 w-5" />
                 </div>
               </div>
             </div>
@@ -1080,7 +1053,7 @@ function Index() {
             {/* CONTENT */}
 
             <div data-reveal>
-              <span className="text-[10px] uppercase tracking-[0.28em] text-[var(--accent)]">
+              <span className="text-[10px] uppercase tracking-[0.28em] text-[#777e85]">
                 Technology
               </span>
 
@@ -1095,17 +1068,16 @@ function Index() {
                   sm:text-5xl
                   lg:text-6xl
                   leading-[0.9]
-                  text-[var(--foreground)]
                 "
               >
                 Security
                 <br />
-                <span className="text-gold-blue">
+                <span className="text-[#aeb3b8]">
                   Connected.
                 </span>
               </h2>
 
-              <p className="mt-6 text-[var(--muted-foreground)] max-w-lg leading-relaxed">
+              <p className="mt-6 text-[#8f969d] max-w-lg leading-relaxed">
                 Modern security technology working alongside
                 trained professionals to give you greater
                 awareness, control and protection.
@@ -1124,12 +1096,11 @@ function Index() {
                         gap-4
                         rounded-2xl
                         border
-                        border-[var(--color-glass-border)]
-                        bg-[var(--color-glass)]
-                        backdrop-blur-md
+                        border-white/[0.07]
+                        bg-white/[0.025]
                         p-4
                         transition-colors
-                        hover:border-[var(--accent)]/40
+                        hover:bg-white/[0.05]
                       "
                     >
                       <div
@@ -1137,23 +1108,23 @@ function Index() {
                           h-11
                           w-11
                           rounded-xl
-                          bg-[var(--color-glass)]
+                          bg-white/[0.05]
                           border
-                          border-[var(--color-glass-border)]
+                          border-white/[0.08]
                           grid
                           place-items-center
                           flex-shrink-0
                         "
                       >
-                        <Icon className="h-5 w-5 text-[var(--accent)]" />
+                        <Icon className="h-5 w-5 text-[#c3c7ca]" />
                       </div>
 
                       <div>
-                        <p className="font-semibold text-[var(--foreground)]">
+                        <p className="font-semibold">
                           {item.title}
                         </p>
 
-                        <p className="text-xs text-[var(--muted-foreground)] mt-1">
+                        <p className="text-xs text-[#777e85] mt-1">
                           {item.text}
                         </p>
                       </div>
@@ -1177,7 +1148,7 @@ function Index() {
           sm:py-32
           px-6
           border-t
-          border-[var(--color-glass-border)]
+          border-white/[0.06]
           bolt-grid
         "
       >
@@ -1186,7 +1157,7 @@ function Index() {
             className="text-center mb-16"
             data-reveal
           >
-            <span className="text-[10px] uppercase tracking-[0.28em] text-[var(--accent)]">
+            <span className="text-[10px] uppercase tracking-[0.28em] text-[#777e85]">
               The Bolt approach
             </span>
 
@@ -1200,16 +1171,15 @@ function Index() {
                 text-4xl
                 sm:text-5xl
                 lg:text-6xl
-                text-[var(--foreground)]
               "
             >
               Detect.
-              <span className="text-gold-blue">
+              <span className="text-[#aeb3b8]">
                 {" "}Verify.
               </span>
               <br />
               Respond.
-              <span className="text-gold-blue">
+              <span className="text-[#aeb3b8]">
                 {" "}Protect.
               </span>
             </h2>
@@ -1244,16 +1214,15 @@ function Index() {
                 className="
                   rounded-3xl
                   border
-                  border-[var(--color-glass-border)]
-                  bg-[var(--color-glass)]
-                  backdrop-blur-md
+                  border-white/[0.07]
+                  bg-[#111315]/80
                   p-7
                   min-h-[220px]
                   transition-all
-                  hover:border-[var(--accent)]/40
+                  hover:border-white/[0.16]
                 "
               >
-                <span className="text-xs text-[var(--accent)] font-semibold">
+                <span className="text-xs text-[#666d73]">
                   {step.number}
                 </span>
 
@@ -1264,13 +1233,12 @@ function Index() {
                     font-bold
                     uppercase
                     text-xl
-                    text-[var(--foreground)]
                   "
                 >
                   {step.title}
                 </h3>
 
-                <p className="mt-3 text-sm text-[var(--muted-foreground)] leading-relaxed">
+                <p className="mt-3 text-sm text-[#7f868c] leading-relaxed">
                   {step.text}
                 </p>
               </div>
@@ -1283,7 +1251,7 @@ function Index() {
           TRUST STATS
       ========================================================= */}
 
-      <section className="py-20 px-6 border-y border-[var(--color-glass-border)]">
+      <section className="py-20 px-6 border-y border-white/[0.06]">
         <div className="mx-auto max-w-6xl grid grid-cols-2 lg:grid-cols-4 gap-8">
           {[
             ["2016", "Established"],
@@ -1303,13 +1271,12 @@ function Index() {
                   text-3xl
                   sm:text-4xl
                   tracking-tight
-                  text-[var(--foreground)]
                 "
               >
                 {value}
               </p>
 
-              <p className="mt-2 text-[10px] uppercase tracking-[0.2em] text-[var(--muted-foreground)]">
+              <p className="mt-2 text-[10px] uppercase tracking-[0.2em] text-[#70777d]">
                 {label}
               </p>
             </div>
@@ -1336,7 +1303,7 @@ function Index() {
           "
         >
           <div data-reveal>
-            <span className="text-[10px] uppercase tracking-[0.28em] text-[var(--accent)]">
+            <span className="text-[10px] uppercase tracking-[0.28em] text-[#777e85]">
               About Bolt
             </span>
 
@@ -1351,27 +1318,26 @@ function Index() {
                 sm:text-6xl
                 lg:text-7xl
                 leading-[0.86]
-                text-[var(--foreground)]
               "
             >
               Built For
               <br />
               The Real
               <br />
-              <span className="text-gold-blue">
+              <span className="text-[#aeb3b8]">
                 World.
               </span>
             </h2>
           </div>
 
           <div data-reveal>
-            <p className="text-lg text-[var(--foreground)] leading-relaxed">
+            <p className="text-lg text-[#d0d4d8] leading-relaxed">
               Bolt Security combines professional security
               personnel, technology and specialised response
               to protect people, properties and businesses.
             </p>
 
-            <p className="mt-5 text-sm text-[var(--muted-foreground)] leading-relaxed max-w-xl">
+            <p className="mt-5 text-sm text-[#777e85] leading-relaxed max-w-xl">
               Our approach is built around proactive
               protection, professional service and security
               solutions tailored to the environment we're
@@ -1389,11 +1355,10 @@ function Index() {
                 font-bold
                 uppercase
                 tracking-[0.15em]
-                text-[var(--foreground)]
                 border-b
-                border-[var(--accent)]/50
+                border-white/20
                 pb-2
-                hover:border-[var(--accent)]
+                hover:border-white
                 transition-colors
               "
             >
@@ -1418,7 +1383,7 @@ function Index() {
           px-6
           overflow-hidden
           border-t
-          border-[var(--color-glass-border)]
+          border-white/[0.06]
         "
       >
         <div className="absolute inset-0 bolt-grid opacity-40" />
@@ -1433,7 +1398,7 @@ function Index() {
             w-[500px]
             h-[500px]
             rounded-full
-            bg-[var(--accent)]/[0.06]
+            bg-white/[0.025]
             blur-3xl
           "
         />
@@ -1447,7 +1412,7 @@ function Index() {
           "
           data-reveal
         >
-          <span className="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-[#777e85]">
             Get protected
           </span>
 
@@ -1462,17 +1427,16 @@ function Index() {
               sm:text-6xl
               lg:text-8xl
               leading-[0.86]
-              text-[var(--foreground)]
             "
           >
             Your Security
             <br />
-            <span className="text-gold-blue">
+            <span className="text-[#aeb3b8]">
               Starts Here.
             </span>
           </h2>
 
-          <p className="mt-7 text-[var(--muted-foreground)] max-w-lg mx-auto">
+          <p className="mt-7 text-[#858c92] max-w-lg mx-auto">
             Tell us what you need protected and we'll help
             you find the right security solution.
           </p>
@@ -1485,15 +1449,15 @@ function Index() {
                 items-center
                 gap-2
                 rounded-full
-                bg-[var(--primary)]
-                text-[var(--primary-foreground)]
+                bg-[#f1f2f3]
+                text-[#101214]
                 px-7
                 py-3.5
                 text-sm
                 font-bold
                 uppercase
                 tracking-[0.06em]
-                hover:brightness-90
+                hover:bg-white
                 transition-all
               "
             >
@@ -1509,15 +1473,14 @@ function Index() {
                 gap-2
                 rounded-full
                 border
-                border-[var(--color-glass-border)]
-                bg-[var(--color-glass)]
-                backdrop-blur-md
+                border-white/[0.12]
+                bg-white/[0.025]
                 px-7
                 py-3.5
                 text-sm
                 font-medium
-                text-[var(--foreground)]
-                hover:border-[var(--accent)]
+                text-[#d0d4d8]
+                hover:bg-white/[0.06]
                 transition-all
               "
             >
@@ -1532,7 +1495,7 @@ function Index() {
           FOOTER
       ========================================================= */}
 
-      <footer className="border-t border-[var(--color-glass-border)] py-12 px-6">
+      <footer className="border-t border-white/[0.06] py-12 px-6">
         <div
           className="
             mx-auto
@@ -1549,11 +1512,10 @@ function Index() {
             <img
               src={boltLogo}
               alt="Bolt Security"
-              suppressHydrationWarning
               className="w-[170px] h-auto"
             />
 
-            <p className="mt-4 text-xs text-[var(--muted-foreground)] max-w-xs leading-relaxed">
+            <p className="mt-4 text-xs text-[#666d73] max-w-xs leading-relaxed">
               Professional security solutions built around
               protection, technology and response.
             </p>
@@ -1568,8 +1530,8 @@ function Index() {
                 flex
                 items-center
                 gap-3
-                text-[var(--muted-foreground)]
-                hover:text-[var(--accent)]
+                text-[#969ca1]
+                hover:text-white
                 transition-colors
               "
             >
@@ -1583,8 +1545,8 @@ function Index() {
                 flex
                 items-center
                 gap-3
-                text-[var(--muted-foreground)]
-                hover:text-[var(--accent)]
+                text-[#969ca1]
+                hover:text-white
                 transition-colors
               "
             >
@@ -1592,7 +1554,7 @@ function Index() {
               finance@boltsecurity.co.za
             </a>
 
-            <div className="flex items-start gap-3 text-[var(--muted-foreground)]">
+            <div className="flex items-start gap-3 text-[#969ca1]">
               <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
 
               <span>
@@ -1615,13 +1577,11 @@ function Index() {
                   w-11
                   rounded-full
                   border
-                  border-[var(--color-glass-border)]
-                  bg-[var(--color-glass)]
-                  backdrop-blur-md
+                  border-white/[0.08]
+                  bg-white/[0.025]
                   grid
                   place-items-center
-                  hover:border-[var(--accent)]
-                  hover:text-[var(--accent)]
+                  hover:bg-white/[0.08]
                   transition-colors
                 "
               >
@@ -1636,13 +1596,11 @@ function Index() {
                   w-11
                   rounded-full
                   border
-                  border-[var(--color-glass-border)]
-                  bg-[var(--color-glass)]
-                  backdrop-blur-md
+                  border-white/[0.08]
+                  bg-white/[0.025]
                   grid
                   place-items-center
-                  hover:border-[var(--accent)]
-                  hover:text-[var(--accent)]
+                  hover:bg-white/[0.08]
                   transition-colors
                 "
               >
@@ -1650,7 +1608,7 @@ function Index() {
               </a>
             </div>
 
-            <p className="mt-5 text-[10px] uppercase tracking-[0.16em] text-[var(--muted-foreground)]">
+            <p className="mt-5 text-[10px] uppercase tracking-[0.16em] text-[#555c62]">
               © {new Date().getFullYear()} Bolt Security
             </p>
           </div>
@@ -1674,11 +1632,11 @@ function Index() {
           h-14
           w-14
           rounded-full
-          bg-[var(--primary)]
-          text-[var(--primary-foreground)]
+          bg-[#e7e9eb]
+          text-[#101214]
           grid
           place-items-center
-          shadow-[var(--shadow-soft)]
+          shadow-[0_15px_50px_rgba(0,0,0,0.45)]
           transition-all
           hover:scale-110
         "
