@@ -287,8 +287,10 @@ function Index() {
               className="
                 w-[145px]
                 sm:w-[165px]
+                sm:max-w-full
                 h-auto
                 object-contain
+                max-w-full
               "
             />
           </a>
@@ -368,7 +370,7 @@ function Index() {
 
         {/* Mobile menu panel */}
         {mobileOpen && (
-          <div className="md:hidden absolute top-[72px] right-4 z-40 w-[220px] rounded-lg btn-glass p-4">
+          <div className="md:hidden absolute top-[72px] right-4 z-40 w-full max-w-[220px] rounded-lg btn-glass p-4">
             <nav className="flex flex-col gap-3">
               <a onClick={() => setMobileOpen(false)} href="#services" className="text-[var(--primary)] px-2 py-1 rounded">Services</a>
               <a onClick={() => setMobileOpen(false)} href="#technology" className="text-[var(--primary)] px-2 py-1 rounded">Technology</a>
@@ -409,6 +411,7 @@ function Index() {
             right-0
             -z-10
             w-[650px]
+            max-w-full
             h-[650px]
             rounded-full
             bg-[var(--accent)]/[0.05]
@@ -1431,6 +1434,7 @@ function Index() {
             -translate-x-1/2
             -translate-y-1/2
             w-[500px]
+            max-w-full
             h-[500px]
             rounded-full
             bg-[var(--accent)]/[0.06]
@@ -1550,7 +1554,7 @@ function Index() {
               src={boltLogo}
               alt="Bolt Security"
               suppressHydrationWarning
-              className="w-[170px] h-auto"
+              className="w-full max-w-[170px] h-auto"
             />
 
             <p className="mt-4 text-xs text-[var(--muted-foreground)] max-w-xs leading-relaxed">
