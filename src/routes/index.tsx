@@ -451,8 +451,8 @@ function Index() {
                 tracking-[-0.055em]
                 text-[2.6rem]
                 sm:text-5xl
-                lg:text-[4.8rem]
-                leading-[0.92]
+                lg:text-[4.4rem]
+                leading-[0.9]
                 text-[var(--foreground)]
               "
             >
