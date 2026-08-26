@@ -444,7 +444,7 @@ function Index() {
             </div>
 
             {/* Inline emergency style to force larger hero headline on small phones */}
-            <style>{`@media (max-width:480px){.hero-title{font-size:clamp(4rem,12vw,4.4rem)!important;line-height:1}}`}</style>
+            <style>{`@media (max-width:768px){.hero-title{font-size:clamp(4.6rem,12vw,5rem)!important;line-height:1}}`}</style>
             <h1
               className="
                 hero-title
