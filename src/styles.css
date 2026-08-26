@@ -67,7 +67,6 @@
 .overlay-text { color: var(--overlay-foreground) !important; }
 .overlay-text-90 { color: rgba(var(--overlay-foreground-rgb), 0.9) !important; }
 .overlay-text-75 { color: rgba(var(--overlay-foreground-rgb), 0.75) !important; }
-.overlay-text-75 { color: rgba(var(--overlay-foreground-rgb), 0.75) !important; }
 .overlay-text-70 { color: rgba(var(--overlay-foreground-rgb), 0.7) !important; }
 .overlay-text-65 { color: rgba(var(--overlay-foreground-rgb), 0.65) !important; }
 .overlay-text-60 { color: rgba(var(--overlay-foreground-rgb), 0.6) !important; }
@@ -127,17 +126,17 @@
 
   h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
 
-  /* Responsive typography overrides for small/medium screens only */
-  @media (max-width: 1024px) {
-    h1 { font-size: clamp(2rem, 6.5vw, 3.8rem); line-height: 1.04; }
-    /* Hero-specific clamp: increase minimum so headline stays readable on small phones */
-    .hero-title { font-size: clamp(3.2rem, 9.5vw, 4.4rem); line-height: 1; }
-    h2 { font-size: clamp(1.5rem, 4.5vw, 2.8rem); line-height: 1.08; }
-    p, li, a, span { font-size: clamp(0.95rem, 2.2vw, 1.0625rem); }
-  }
+  /* NOTE: Heading font sizes are controlled directly on each element via
+     Tailwind classes in the component (mobile-first, then sm:/lg: steps up).
+     Do NOT add global h1/h2/.hero-title font-size overrides here — stacking
+     multiple clamp()/!important rules across breakpoints is what caused the
+     hero title to render inconsistently (tiny on some phones, huge on
+     others). Keep sizing in exactly one place. */
 
-  /* Ensure long words or unbroken content wraps instead of causing overflow */
-  p, li, a, span, .prose, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; hyphens: auto; }
+  /* Ensure long words wrap instead of overflowing, but don't hyphenate
+     headings — mid-word hyphens on short display headlines look broken. */
+  p, li, a, span, .prose { overflow-wrap: break-word; word-break: break-word; }
+  h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
 
   /* Limit readable line length for long text blocks */
   .text-container, .prose, .max-w-prose { max-width: 65ch; margin-left: auto; margin-right: auto; }
