@@ -450,7 +450,7 @@ function Index() {
                 font-black
                 uppercase
                 tracking-[-0.055em]
-                text-[clamp(3.3rem,12vw,5rem)]
+                text-[clamp(3.09rem,12vw,5rem)]
                 sm:text-[4rem]
                 lg:text-[4.6rem]
                 leading-[0.82]
