@@ -460,13 +460,13 @@ function Index() {
               Security
               <br />
 
-                <span className="text-blue-gold">
+                <span className="text-[var(--foreground)]">
                 Without
               </span>
 
               <br />
 
-                <span className="text-blue-gold">
+                <span className="text-[var(--foreground)]">
                 Compromise.
               </span>
             </h1>
